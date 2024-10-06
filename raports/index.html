@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ua">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      #tab {
+        border-collapse: collapse;
+        margin: 50px;
+        & caption {
+          margin: 20px;
+          text-align: left;
+        }
+        & th,
+        caption {
+          font-weight: bold;
+        }
+        & th,
+        td {
+          border: 3px solid #000;
+          height: 30px;
+          padding: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Filter</h1>
+    <button onclick="addtr()">Click</button>
+    <table id="tab">
+      <caption>
+        Максимальні показники:
+      </caption>
+      <tr>
+        <th>Шлейф</th>
+        <th>Панель</th>
+        <th>Адреса</th>
+        <th>Забрудн.</th>
+        <th>Опис</th>
+        <th>Зона</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>3</td>
+        <td>71</td>
+        <td>92</td>
+        <td>Тех. кор. B7-B12</td>
+        <td>301</td>
+      </tr>
+    </table>
+    <script src="script.js"></script>
+  </body>
+</html>
