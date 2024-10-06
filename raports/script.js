@@ -37,6 +37,23 @@ function createMassiv() {
   }
 }
 
+function iteration(mas) {
+  for (let tr of mas) {
+    let [d0, d1, , , d4, d5] = tr.cells;
+    let line = d0.innerText;
+    let adr = d1.innerText;
+    let val = d4.innerText;
+    let zone = d5.innerText;
+    let item = {
+      line,
+      adr,
+      val,
+      zone,
+    }
+    points[`s${line}a${adr}`] = item
+  }
+}
+
 function addDiscription() {
   for (let n of tab1.rows) {
     let discr = n.cells[4].innerText;
