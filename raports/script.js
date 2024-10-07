@@ -2,74 +2,47 @@ const tables = document.getElementsByTagName('table');
 const tab = document.getElementById("tab");
 const tab1 = tables[2];
 const tab2 = tables[3];
-const points = {};
+const lim = 79;
 
 let panel = tables[0].rows[5].cells[1].innerText;
-// let line = tab1.rows['1'].cells[0].innerText;
 
-const str = `
-  <td>1</td>
-  <td>4</td>
-  <td>12</td>
-  <td>69</td>
-  <td>Тех. кор. B8-B10</td>
-  <td>301</td>`
-
-function addtr() {
+function addtr(str) {
     let tr = document.createElement("tr");
     tr.innerHTML = str;
     tab.appendChild(tr)
 }
 
-function createMassiv() {
-  for (let i=1; i<tab2.rows.length; i++) {
-    let line = tab2.rows[i].cells[0].innerText;
-    let adr = tab2.rows[i].cells[1].innerText;
-    let zone = tab2.rows[i].cells[4].innerText;
-    let val = tab2.rows[i].cells[5].innerText;
-    let item = {
-      line,
-      adr,
-      val,
-      zone,
-    }
-    points[`s${line}a${adr}`] = item
-  }
-}
-
 function iteration(mas) {
+  const scan = {};
   for (let tr of mas) {
-    let [d0, d1, , , d4, d5] = tr.cells;
-    let line = d0.innerText;
-    let adr = d1.innerText;
-    let val = d4.innerText;
-    let zone = d5.innerText;
-    let item = {
-      line,
-      adr,
-      val,
-      zone,
-    }
-    points[`s${line}a${adr}`] = item
+    let [d0, d1, ...rest] = tr.cells;
+    let adr = [d0.innerText, d1.innerText];
+    let date = rest.map(n => n = n.innerText);
+    scan[adr] = date
   }
+  return scan
 }
 
-function addDiscription() {
-  for (let n of tab1.rows) {
-    let discr = n.cells[4].innerText;
-    let line = n.cells[0].innerText;
-    let adr = n.cells[1].innerText;
-    const ind = 's' + line + 'a' + adr;
-    // points[`s${line}a${adr}`].discr = discr;
-    points[ind].discr = discr
-  
+const massiv1 = iteration(tab1.rows);
+const massiv2 = iteration(tab2.rows);
+const adress = Object.keys(massiv2);
 
-    // setTimeout(() => points[ind].discr = discr, 0)
-
-    // if (
-    //   adress == points[ind].adr
-    // ) {
-    //   points[ind].discr = discr
-    // }
+function filter() {
+  for (let m of adress) {
+    let val = massiv2[m][3];
+    if (val > lim) {
+      let [line, adr] = m.split(',');
+      console.log('shl: ' + line + ' | ' + 'adr: ' + adr + ' | ' + 'value = ' + val );
+      let discr = massiv1[m][2];
+      let zone = massiv1[m][3];
+      let str = `
+        <td>${panel}</td>
+        <td>${line}</td>
+        <td>${adr}</td>
+        <td>${val}</td>
+        <td>${discr}</td>
+        <td>${zone}</td>`;
+      addtr(str)
+    }
   }
 }
