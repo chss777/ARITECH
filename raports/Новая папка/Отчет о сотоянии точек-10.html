@@ -17,6 +17,25 @@
                 font: 16 px, Arial;
             }
 
+            #tab {
+                border-collapse: collapse;
+                margin: 0 50px;
+                & caption {
+                margin: 20px 0;
+                text-align: left;
+                }
+                & th,
+                caption {
+                font-weight: bold;
+                }
+                & th,
+                td {
+                border: 3px solid #000;
+                height: 30px;
+                padding: 5px;
+                }
+            }
+
             p.small {
                 line-height: 80%;
             }
@@ -126,7 +145,7 @@
         <br />
         <br />
 
-        <button style="margin: 0 50px;" onclick="filter()">Click</button>
+        <button style="margin: 0 50px;" onclick="addtr()">Click</button>
         <table id="tab">
           <caption>
             Максимальні показники:

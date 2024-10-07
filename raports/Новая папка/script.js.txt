@@ -2,31 +2,9 @@ const tables = document.getElementsByTagName('table');
 const tab = document.getElementById("tab");
 const tab1 = tables[2];
 const tab2 = tables[3];
-const panel = tables[0].rows[5].cells[1].innerText;
 const lim = 79;
 
-const styl = document.createElement('style');
-styl.innerHTML = `            
-#tab {
-    border-collapse: collapse;
-    margin: 0 50px;
-    & caption {
-    margin: 20px 0;
-    text-align: left;
-    }
-    & th,
-    caption {
-    font-weight: bold;
-    }
-    & th,
-    td {
-    border: 3px solid #000;
-    height: 30px;
-    padding: 5px;
-    }
-}`;
-const body = document.querySelector('body');
-body.before(styl);
+let panel = tables[0].rows[5].cells[1].innerText;
 
 function addtr(str) {
     let tr = document.createElement("tr");
