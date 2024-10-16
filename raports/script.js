@@ -43,7 +43,7 @@ const th =
   `<table id="tab">
   <caption>
     Вибрати сповіщувачі зі значенням більше
-    <input id="limit" type="number" value="69">
+    <input id="limit" type="number" value="77">
     <button onclick="filter()">Ok</button>
   </caption>
   <tr>
